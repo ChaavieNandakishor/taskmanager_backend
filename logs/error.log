@@ -1,0 +1,7 @@
+{"level":"error","message":"User with the same email or username already exists","timestamp":"2023-12-23T07:17:53.652Z"}
+{"level":"error","message":"User with the same email or username already exists","timestamp":"2023-12-23T07:18:26.601Z"}
+{"level":"error","message":"User registration failed: data and salt arguments required","timestamp":"2023-12-23T07:18:31.632Z"}
+{"level":"error","message":"User registration failed: data and salt arguments required","timestamp":"2023-12-23T07:19:23.452Z"}
+{"level":"error","message":"User registration failed: data and salt arguments required","timestamp":"2023-12-23T07:20:23.257Z"}
+{"level":"error","message":"User with the same email or username already exists","timestamp":"2023-12-23T07:22:30.994Z"}
+{"level":"error","message":"User with the same email or username already exists","timestamp":"2023-12-23T07:24:55.824Z"}
