@@ -1,6 +1,7 @@
 const User = require("../models/user.model");
 const bcrypt = require("bcrypt");
 const logger = require("../log");
+const jwt=require("jsonwebtoken")
 
 const userRegistraion = async (req, res) => {
   console.log("registration api called");
@@ -40,6 +41,45 @@ const userRegistraion = async (req, res) => {
   }
 };
 
+const userLogin = async (req, res) => {
+  const refreshTokenPayload = {
+    id: "logged_id",
+    // userName: userName,
+    userType: "type",
+  };
+
+  const accessTokenPayload = {
+    id: "logged_id",
+    // userName: userName,
+    userType: "type",
+  };
+
+  const refreshTokenOptions = {
+    expiresIn: "10m",
+  };
+
+  const accessTokenOptions = {
+    expiresIn: "60m",
+  };
+  const refreshToken = jwt.sign(
+    refreshTokenPayload,
+    process.env.REFRESH_TOKEN_SECRET,
+    refreshTokenOptions
+  );
+  const accessToken = jwt.sign(
+    accessTokenPayload,
+    process.env.ACCESS_TOKEN_SECRET,
+    accessTokenOptions
+  );
+  res.status(200).json({
+    success: true,
+    message: "logged in",
+    accessToken,
+    refreshToken,
+  });
+};
+
 module.exports = {
   userRegistraion,
+  userLogin,
 };

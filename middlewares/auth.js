@@ -18,7 +18,7 @@ const auth = (req, res, next) => {
       return res.status(401).send("Invalid token");
     } else {
       // console.error(error);
-      return res.status(500).send("Internal server error");
+      return res.status(500).send("Internal server errorj");
     }
   }
 };
