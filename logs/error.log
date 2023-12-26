@@ -5,3 +5,4 @@
 {"level":"error","message":"User registration failed: data and salt arguments required","timestamp":"2023-12-23T07:20:23.257Z"}
 {"level":"error","message":"User with the same email or username already exists","timestamp":"2023-12-23T07:22:30.994Z"}
 {"level":"error","message":"User with the same email or username already exists","timestamp":"2023-12-23T07:24:55.824Z"}
+{"level":"error","message":"Incomplete user registration data","timestamp":"2023-12-26T05:53:15.301Z"}

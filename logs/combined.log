@@ -7,3 +7,4 @@
 {"level":"error","message":"User with the same email or username already exists","timestamp":"2023-12-23T07:22:30.994Z"}
 {"level":"info","message":"user registration successfull","timestamp":"2023-12-23T07:23:46.029Z"}
 {"level":"error","message":"User with the same email or username already exists","timestamp":"2023-12-23T07:24:55.824Z"}
+{"level":"error","message":"Incomplete user registration data","timestamp":"2023-12-26T05:53:15.301Z"}
