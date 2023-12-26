@@ -30,5 +30,5 @@ const userSchema = new Schema({
   roles: [String],
 });
 
-let userData = mongoose.model("user_tb", userSchema);
-module.exports = userData;
+let User = mongoose.model("user_tb", userSchema);
+module.exports = User;

@@ -1,9 +1,9 @@
 const User = require("../models/user.model");
 const bcrypt = require("bcrypt");
-const logger=require("../log")
+const logger = require("../log");
 
 const userRegistraion = async (req, res) => {
-  console.log('registration api called')
+  console.log("registration api called");
 
   try {
     const { email, password, userName } = req.body;
@@ -22,14 +22,14 @@ const userRegistraion = async (req, res) => {
         .status(409)
         .json({ error: "User with the same email or username already exists" });
     }
-    const hashedPassword = await bcrypt.hash(password,10);
-    const userData = {
-      email,
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const user = new User({
+      email: email,
       password: hashedPassword,
       username: userName,
-    };
-    const userDetails = new User(userData);
-    await userDetails.save();
+    });
+    await user.save();
     logger.info("user registration successfull");
     res
       .status(200)

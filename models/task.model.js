@@ -26,6 +26,10 @@ const taskSchema = new Schema({
     ref: "User",
     required: true,
   },
+  createdDate: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 let Task = mongoose.model("Task", taskSchema);
