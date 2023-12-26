@@ -2,7 +2,7 @@ const logger = require("../log");
 const Task = require("../models/task.model");
 
 const createNewTask = async (req, res) => {
-    console.log("api running")
+  console.log("api running");
   try {
     const { title, description, dueDate, priority, owner } = req.body;
     if (!title || !dueDate) {
@@ -19,9 +19,9 @@ const createNewTask = async (req, res) => {
       dueDate,
       priority,
       owner,
-    })
-    console.log(task)
-    await task.save()
+    });
+    console.log(task);
+    await task.save();
     res.status(200).json({
       success: true,
       message: "task added",
@@ -32,7 +32,12 @@ const createNewTask = async (req, res) => {
   }
 };
 
-const getAllTasks = async (req, res) => {};
+const getAllTasks = async (req, res) => {
+  try {
+    const tasks =await Task.find();
+    res.send(tasks)
+  } catch (err) {}
+};
 const getTasksByPriority = async (req, res) => {};
 const getTasksByID = async (req, res) => {};
 const updateTask = async (req, res) => {};
