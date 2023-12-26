@@ -3,7 +3,7 @@ const Task = require("../models/task.model");
 
 const createNewTask = async (req, res) => {
   try {
-    const { title, description, dueDate, priority,owner } = req.body;
+    const { title, description, dueDate, priority, owner } = req.body;
     if (!title || !dueDate) {
       const error = "title and duedate required";
       logger.error(error);
@@ -17,7 +17,7 @@ const createNewTask = async (req, res) => {
       description,
       dueDate,
       priority,
-      owner
+      owner,
     });
     await task.save();
     res.status(200).json({
@@ -30,6 +30,17 @@ const createNewTask = async (req, res) => {
   }
 };
 
+const getAllTasks = async (req, res) => {};
+const getTasksByPriority = async (req, res) => {};
+const getTasksByID = async (req, res) => {};
+const updateTask = async (req, res) => {};
+const deleteTask = async (req, res) => {};
+
 module.exports = {
   createNewTask,
+  getAllTasks,
+  getTasksByPriority,
+  getTasksByID,
+  updateTask,
+  deleteTask,
 };
