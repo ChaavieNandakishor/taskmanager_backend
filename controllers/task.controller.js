@@ -86,11 +86,34 @@ const getTasksByUserID = async (req, res) => {
 };
 const updateTask = async (req, res) => {
   try {
-    const taskId = req.body.taskId;
-    const task=await Task.findOneAndUpdate(
-      {_id:taskId},
-    )
-  } catch {}
+    const { taskId, updatedFields } = req.body;
+    if (!taskId || !updatedFields) {
+      const errorText = "taskId and updatedFields required";
+      logger.error(errorText);
+      return res.status(400).json({
+        success: false,
+        message: errorText,
+      });
+    }
+    const task = await Task.findOneAndUpdate(
+      { _id: taskId },
+      { $set: updatedFields }
+      // { new: true } //can be used for returning updated doc
+    );
+    if (!task) {
+      const errorText = "task not found";
+      logger.error(errorText);
+      return res.status(400).json({
+        success: false,
+        message: errorText,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "task updated successfully",
+    });
+  } catch (err) {}
 };
 const deleteTask = async (req, res) => {};
 
