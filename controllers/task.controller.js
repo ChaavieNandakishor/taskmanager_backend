@@ -82,7 +82,13 @@ const getTasksByUserID = async (req, res) => {
       data: userTasks,
     });
     res.send(userTasks);
-  } catch (err) {}
+  } catch (err) {
+    logger.error(err);
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
 };
 const updateTask = async (req, res) => {
   try {
@@ -113,9 +119,45 @@ const updateTask = async (req, res) => {
       success: true,
       message: "task updated successfully",
     });
-  } catch (err) {}
+  } catch (err) {
+    logger.error(err);
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
 };
-const deleteTask = async (req, res) => {};
+const deleteTask = async (req, res) => {
+  try {
+    const { taskId } = req.body;
+    if (!taskId) {
+      const errorText = "task id required";
+      logger.error(errorText);
+      return res.status(400).json({
+        success: false,
+        message: errorText,
+      });
+    }
+    const deletedTask = await Task.findByIdAndDelete(taskId);
+    if (!deletedTask) {
+      return res.status(404).json({
+        success: false,
+        message: "Task not found",
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      message: "Task deleted successfully",
+      // data: deletedTask,
+    });
+  } catch (err) {
+    logger.error(err);
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+};
 
 module.exports = {
   createNewTask,

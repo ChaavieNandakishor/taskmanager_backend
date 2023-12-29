@@ -9,5 +9,6 @@ router.get('/getalltasks',taskControllers.getAllTasks)
 router.post('/getbypriority',taskControllers.getTasksByPriority)
 router.post('/getusertasks',taskControllers.getTasksByUserID)
 router.post('/updatetask',taskControllers.updateTask)
+router.post('/deletetask',taskControllers.deleteTask)
 
 module.exports=router;
