@@ -3,9 +3,9 @@ const Task = require("../models/task.model");
 const User = require("../models/user.model");
 
 const createNewTask = async (req, res) => {
-  console.log("api running");
   try {
-    const { title, description, dueDate, priority, owner } = req.body;
+    const { title, description, dueDate, priority,category } = req.body;
+    const owner=req.user.userId
     if (!title || !dueDate) {
       const errorMessage = "title and duedate required";
       logger.error(errorMessage);
@@ -20,6 +20,7 @@ const createNewTask = async (req, res) => {
       dueDate,
       priority,
       owner,
+      category
     });
     console.log(task);
     await task.save();
