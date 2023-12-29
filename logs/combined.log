@@ -32,3 +32,18 @@
 {"code":79,"codeName":"UnknownReplWriteConcern","errInfo":{"writeConcern":{"provenance":"clientSupplied","w":"majority;","wtimeout":0}},"level":"error","result":{"$clusterTime":{"clusterTime":{"$timestamp":"7316807303649296387"},"signature":{"hash":"60rONaKJC0boW2fyRUwGUzYtY/8=","keyId":{"high":1703236964,"low":6,"unsigned":false}}},"electionId":"7fffffff0000000000000004","n":1,"ok":1,"opTime":{"t":4,"ts":{"$timestamp":"7316807303649296387"}},"operationTime":{"$timestamp":"7316807303649296387"},"writeConcernError":{"code":79,"codeName":"UnknownReplWriteConcern","errInfo":{"writeConcern":{"provenance":"clientSupplied","w":"majority;","wtimeout":0}},"errmsg":"No write concern mode named 'majority;' found in replica set configuration"}},"timestamp":"2023-12-26T07:49:16.063Z"}
 {"level":"error","message":"priority required","timestamp":"2023-12-26T12:26:21.587Z"}
 {"code":"ERR_HTTP_HEADERS_SENT","level":"error","timestamp":"2023-12-26T12:26:21.668Z"}
+{"level":"error","message":"email and password required","timestamp":"2023-12-29T06:07:07.027Z"}
+{"level":"error","message":"email and password required","timestamp":"2023-12-29T06:08:04.780Z"}
+{"level":"error","message":"email validation error","timestamp":"2023-12-29T06:15:16.855Z"}
+{"code":"ERR_HTTP_HEADERS_SENT","level":"error","timestamp":"2023-12-29T06:15:16.859Z"}
+{"level":"error","message":"no user found","timestamp":"2023-12-29T06:24:15.177Z"}
+{"level":"info","message":"user registration successfull","timestamp":"2023-12-29T06:36:36.335Z"}
+{"level":"error","message":"Password is incorect","timestamp":"2023-12-29T06:43:55.783Z"}
+{"level":"error","message":"email validation error","timestamp":"2023-12-29T06:45:48.482Z"}
+{"level":"error","message":"no user found","timestamp":"2023-12-29T06:45:58.467Z"}
+{"level":"error","message":"Password is incorrect","timestamp":"2023-12-29T06:46:03.464Z"}
+{"level":"error","message":"email validation error","timestamp":"2023-12-29T06:51:52.058Z"}
+{"level":"error","message":"no user found","timestamp":"2023-12-29T06:51:52.121Z"}
+{"level":"error","message":"no user found","timestamp":"2023-12-29T06:52:50.796Z"}
+{"level":"error","message":"email validation error","timestamp":"2023-12-29T06:52:55.508Z"}
+{"level":"error","message":"Password is incorrect","timestamp":"2023-12-29T06:53:04.503Z"}

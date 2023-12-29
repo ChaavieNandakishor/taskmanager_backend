@@ -36,7 +36,7 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 
 //routes------------------------------
 app.use("/user",require("./routes/user.routes"))
-app.use("/task",require("./routes/task.routes"))
+app.use("/task",auth,require("./routes/task.routes"))
 
 /* --------------------------------------- */
 

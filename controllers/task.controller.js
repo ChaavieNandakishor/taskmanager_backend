@@ -1,5 +1,6 @@
 const logger = require("../log");
 const Task = require("../models/task.model");
+const User = require("../models/user.model");
 
 const createNewTask = async (req, res) => {
   console.log("api running");
@@ -63,15 +64,41 @@ const getTasksByPriority = async (req, res) => {
     });
   }
 };
-const getTasksByID = async (req, res) => {};
-const updateTask = async (req, res) => {};
+const getTasksByUserID = async (req, res) => {
+  // res.send(req.user);
+  try {
+    const { userId } = req.user;
+    const userTasks = await Task.find({ owner: userId });
+    if (userTasks.length === 0) {
+      const responseText = "no tasks found for the user";
+      return res.status(400).json({
+        success: false,
+        message: responseText,
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "fetched user tasks successfully",
+      data: userTasks,
+    });
+    res.send(userTasks);
+  } catch (err) {}
+};
+const updateTask = async (req, res) => {
+  try {
+    const taskId = req.body.taskId;
+    const task=await Task.findOneAndUpdate(
+      {_id:taskId},
+    )
+  } catch {}
+};
 const deleteTask = async (req, res) => {};
 
 module.exports = {
   createNewTask,
   getAllTasks,
   getTasksByPriority,
-  getTasksByID,
+  getTasksByUserID,
   updateTask,
   deleteTask,
 };

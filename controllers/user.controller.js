@@ -1,7 +1,8 @@
 const User = require("../models/user.model");
 const bcrypt = require("bcrypt");
 const logger = require("../log");
-const jwt=require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
+const validator = require("validator");
 
 const userRegistraion = async (req, res) => {
   console.log("registration api called");
@@ -42,41 +43,86 @@ const userRegistraion = async (req, res) => {
 };
 
 const userLogin = async (req, res) => {
-  const refreshTokenPayload = {
-    id: "logged_id",
-    // userName: userName,
-    userType: "type",
-  };
+  try {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      const errorText = "email and password required";
+      logger.error(errorText);
+      res.status(400).json({
+        success: false,
+        message: errorText,
+      });
+    }
+    if (!validator.isEmail(email)) {
+      const errorText = "email validation error";
+      logger.error(errorText);
+      return res.status(400).json({
+        success: false,
+        message: errorText,
+      });
+    }
+    const user = await User.findOne({
+      email: email,
+    });
+    if (!user) {
+      const errorText = "no user found";
+      logger.error(errorText);
+      return res.status(400).json({
+        success: false,
+        message: errorText,
+      });
+    }
+    isPasswordMatch = await bcrypt.compare(password, user.password);
+    console.log(isPasswordMatch);
+    if (!isPasswordMatch) {
+      const errorText = "Password is incorrect";
+      logger.error(errorText);
+      return res.status(400).json({
+        success: false,
+        message: errorText,
+      });
+    }
+    const refreshTokenPayload = {
+      userId: user._id,
+      userName: user.username,
+    };
 
-  const accessTokenPayload = {
-    id: "logged_id",
-    // userName: userName,
-    userType: "type",
-  };
+    const accessTokenPayload = {
+      userId: user._id,
+      userName: user.username,
+    };
 
-  const refreshTokenOptions = {
-    expiresIn: "10m",
-  };
+    const refreshTokenOptions = {
+      expiresIn: "10m",
+    };
 
-  const accessTokenOptions = {
-    expiresIn: "60m",
-  };
-  const refreshToken = jwt.sign(
-    refreshTokenPayload,
-    process.env.REFRESH_TOKEN_SECRET,
-    refreshTokenOptions
-  );
-  const accessToken = jwt.sign(
-    accessTokenPayload,
-    process.env.ACCESS_TOKEN_SECRET,
-    accessTokenOptions
-  );
-  res.status(200).json({
-    success: true,
-    message: "logged in",
-    accessToken,
-    refreshToken,
-  });
+    const accessTokenOptions = {
+      expiresIn: "60m",
+    };
+    const refreshToken = jwt.sign(
+      refreshTokenPayload,
+      process.env.REFRESH_TOKEN_SECRET,
+      refreshTokenOptions
+    );
+    const accessToken = jwt.sign(
+      accessTokenPayload,
+      process.env.ACCESS_TOKEN_SECRET,
+      accessTokenOptions
+    );
+    res.status(200).json({
+      success: true,
+      message: " succesfully logged in",
+      accessToken,
+      refreshToken,
+    });
+  } catch (err) {
+    logger.error(err);
+    res.status(500).json({
+      success: false,
+      error: err,
+      message: "Internal server error",
+    });
+  }
 };
 
 module.exports = {
