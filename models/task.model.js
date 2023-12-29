@@ -14,9 +14,9 @@ const taskSchema = new Schema({
     type: Date,
     required: true,
   },
-  completed: {
-    type: Boolean,
-    default: false,
+  status: {
+    type: String,
+    default: "inprogress",
   },
   priority: {
     type: String,
