@@ -48,3 +48,8 @@
 {"_message":"Task validation failed","errors":{"owner":{"kind":"required","message":"Path `owner` is required.","name":"ValidatorError","path":"owner","properties":{"message":"Path `owner` is required.","path":"owner","type":"required"}}},"level":"error","message":"Task validation failed: owner: Path `owner` is required.","name":"ValidationError","timestamp":"2023-12-29T11:32:36.721Z"}
 {"_message":"Task validation failed","errors":{"owner":{"kind":"required","message":"Path `owner` is required.","name":"ValidatorError","path":"owner","properties":{"message":"Path `owner` is required.","path":"owner","type":"required"}}},"level":"error","message":"Task validation failed: owner: Path `owner` is required.","name":"ValidationError","timestamp":"2023-12-29T11:33:10.273Z"}
 {"_message":"Task validation failed","errors":{"owner":{"kind":"required","message":"Path `owner` is required.","name":"ValidatorError","path":"owner","properties":{"message":"Path `owner` is required.","path":"owner","type":"required"}}},"level":"error","message":"Task validation failed: owner: Path `owner` is required.","name":"ValidationError","timestamp":"2023-12-29T11:34:08.722Z"}
+{"level":"error","timestamp":"2024-01-01T06:29:10.552Z"}
+{"code":"ERR_HTTP_HEADERS_SENT","level":"error","timestamp":"2024-01-01T06:30:31.303Z"}
+{"level":"error","timestamp":"2024-01-01T06:32:05.507Z"}
+{"level":"error","message":"category required","timestamp":"2024-01-01T06:39:03.499Z"}
+{"level":"error","message":"task not found","timestamp":"2024-01-01T06:46:03.528Z"}

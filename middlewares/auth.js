@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 const auth = (req, res, next) => {
   // const { accessToken } = req.cookies;
-  // console.log(req.headers)
+  console.log(req.headers)
   const accessToken = req.headers.authorization.split(" ")[1];
   if (!accessToken) {
     return res.send("login pls");

@@ -4,8 +4,8 @@ const User = require("../models/user.model");
 
 const createNewTask = async (req, res) => {
   try {
-    const { title, description, dueDate, priority,category } = req.body;
-    const owner=req.user.userId
+    const { title, description, dueDate, priority, category } = req.body;
+    const owner = req.user.userId;
     if (!title || !dueDate) {
       const errorMessage = "title and duedate required";
       logger.error(errorMessage);
@@ -20,7 +20,7 @@ const createNewTask = async (req, res) => {
       dueDate,
       priority,
       owner,
-      category
+      category,
     });
     console.log(task);
     await task.save();
@@ -44,6 +44,7 @@ const getAllTasks = async (req, res) => {
 };
 const getTasksByPriority = async (req, res) => {
   try {
+    const userId = req.user.userId;
     const { priority } = req.body;
     if (!priority) {
       const errorMessage = "priority required";
@@ -52,6 +53,7 @@ const getTasksByPriority = async (req, res) => {
     }
     const response = await Task.find({
       priority: { $regex: priority, $options: "i" },
+      owner: userId,
     });
     res.status(200).json({
       success: true,
@@ -62,6 +64,31 @@ const getTasksByPriority = async (req, res) => {
     res.status(500).json({
       success: false,
       message: "Internal server error",
+    });
+  }
+};
+const getTasksByCategory = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const category = req.body.category;
+    if (!category) {
+      const errorMsg = "category required";
+      logger.error(errorMsg);
+      return res.status(400).json({
+        success: false,
+        message: errorMsg,
+      });
+    }
+    console.log("the user id is", userId);
+    const response = await Task.find({ owner: userId, category: category });
+    res.status(200).json({
+      success: true,
+      data: response,
+    });
+  } catch (err) {
+    logger.error(err);
+    res.status(500).json({
+      error: "Internal server error",
     });
   }
 };
@@ -93,6 +120,7 @@ const getTasksByUserID = async (req, res) => {
 };
 const updateTask = async (req, res) => {
   try {
+    const { userId } = req.user;
     const { taskId, updatedFields } = req.body;
     if (!taskId || !updatedFields) {
       const errorText = "taskId and updatedFields required";
@@ -103,7 +131,7 @@ const updateTask = async (req, res) => {
       });
     }
     const task = await Task.findOneAndUpdate(
-      { _id: taskId },
+      { _id: taskId, owner: userId },
       { $set: updatedFields }
       // { new: true } //can be used for returning updated doc
     );
@@ -164,6 +192,7 @@ module.exports = {
   createNewTask,
   getAllTasks,
   getTasksByPriority,
+  getTasksByCategory,
   getTasksByUserID,
   updateTask,
   deleteTask,
