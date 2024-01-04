@@ -57,3 +57,10 @@
 {"level":"error","timestamp":"2024-01-01T06:32:05.507Z"}
 {"level":"error","message":"category required","timestamp":"2024-01-01T06:39:03.499Z"}
 {"level":"error","message":"task not found","timestamp":"2024-01-01T06:46:03.528Z"}
+{"level":"error","message":"email and password required","timestamp":"2024-01-04T10:27:12.509Z"}
+{"level":"error","message":"Password is incorrect","timestamp":"2024-01-04T10:36:47.353Z"}
+{"level":"error","message":"email and password required","timestamp":"2024-01-04T11:50:10.599Z"}
+{"level":"error","message":"email and password required","timestamp":"2024-01-04T11:50:19.290Z"}
+{"level":"error","message":"email and password required","timestamp":"2024-01-04T11:50:49.662Z"}
+{"level":"error","message":"email and password required","timestamp":"2024-01-04T11:50:52.719Z"}
+{"level":"error","message":"email and password required","timestamp":"2024-01-04T11:51:07.270Z"}

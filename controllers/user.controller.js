@@ -48,7 +48,7 @@ const userLogin = async (req, res) => {
     if (!email || !password) {
       const errorText = "email and password required";
       logger.error(errorText);
-      res.status(400).json({
+     return res.status(400).json({
         success: false,
         message: errorText,
       });
